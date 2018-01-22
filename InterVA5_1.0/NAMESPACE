@@ -1,0 +1,22 @@
+exportPattern("^[[:alpha:]]+")
+
+#export(causetext)
+#export(CSMF.interVA4)
+#export(CSMF)
+#export(InterVA.plot)
+#export(InterVA)
+#export(Population.summary)
+#export(probbase)
+#export(SampleInput)
+
+
+
+importFrom("grDevices", "dev.new", "grey.colors")
+importFrom("graphics", "barplot", "par", "pie")
+importFrom("utils", "data", "write.table")
+
+
+
+S3method("summary", "interVA5")
+S3method("print","interVA5_summary")
+
