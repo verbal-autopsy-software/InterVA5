@@ -101,7 +101,7 @@ summary.interVA5 <- function(object, top = 5, id = NULL, InterVA.rule = TRUE, ..
     }
 
     out$InterVA.rule <- InterVA.rule
-    class(out) <- "interVA_summary"
+    class(out) <- "interVA5_summary"
     return(out)
 }
 
