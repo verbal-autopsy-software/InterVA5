@@ -80,6 +80,10 @@ summary.interVA5 <- function(object, top = 5, id = NULL, InterVA.rule = TRUE, ..
     csmf <- data.frame(cause = names(csmf), likelihood = csmf)
     rownames(csmf) <- NULL
 
+    csmfc <- COMCAT.interVA5(va)
+    csmfc <- data.frame(cause = names(csmfc), likelihood = csmfc)
+    rownames(csmfc) <- NULL
+
     if(!is.null(id)){
         index <- which(object$ID == id)
         if(is.null(index)){
@@ -98,6 +102,7 @@ summary.interVA5 <- function(object, top = 5, id = NULL, InterVA.rule = TRUE, ..
         out$id.toprint <- id
     }else{
         out$csmf.ordered <- csmf[order(csmf[,2], decreasing = TRUE),]
+        out$comcat.ordered <- csmfc[order(csmfc[, 2], decreasing = TRUE),]
     }
 
     out$InterVA.rule <- InterVA.rule
@@ -133,6 +138,11 @@ print.interVA5_summary <- function(x, ...){
         cat("\n")
         cat(paste("Top", x$top,  "CSMFs:\n"))
         csmf.out.ordered <- x$csmf.ordered[1:x$top, ]
+        csmf.out.ordered[, 2] <- round(csmf.out.ordered[, 2], 4)
+        print(csmf.out.ordered, right = FALSE, row.names = F)
+        cat("\n")
+        cat(paste("Top", x$top,  "Circumstance of Mortality Category:\n"))
+        csmf.out.ordered <- x$comcat[1:x$top, ]
         csmf.out.ordered[, 2] <- round(csmf.out.ordered[, 2], 4)
         print(csmf.out.ordered, right = FALSE, row.names = F)
     }

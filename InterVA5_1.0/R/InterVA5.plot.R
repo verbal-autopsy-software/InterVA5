@@ -15,7 +15,7 @@
 #'        filename = "VA_result", output = "extended", append = FALSE)
 #' ## Get CSMF without plots
 #' csmf<- CSMF.interVA5(sample.output$VA)
-#' data(SampleInput)
+#' 
 #'
 CSMF.interVA5 <- function(va){
    # for future compatibility with non-standard input
@@ -63,7 +63,7 @@ CSMF.interVA5 <- function(va){
     for(i in 1:length(va)){
         if(is.null(va[[i]][16])) next
         this.dist <- unlist(va[[i]][16])
-        if(include.probAC) this.dist <- this.dist[-c(1:3, 65:70)]
+        if(include.probAC) this.dist[c(1:3, 65:70)] <- 0
         if(max(this.dist) < 0.4){
           undeter <- undeter + sum(this.dist)
         }else{
@@ -86,7 +86,9 @@ CSMF.interVA5 <- function(va){
         dist.cod <- dist[causeindex]/sum(dist[causeindex])
         names(dist.cod)<-causenames
     }
-
+    if(sum(is.nan(dist.cod)) == length(dist.cod)){
+        dist.cod[is.nan(dist.cod)] <- 0
+    }
     return(dist.cod)
 }
 
@@ -144,6 +146,9 @@ COMCAT.interVA5 <- function(va){
     }else{
         dist.cod <- dist/sum(dist)
         names(dist.cod)<-causenames
+    }
+    if(sum(is.nan(dist.cod)) == length(dist.cod)){
+        dist.cod[is.nan(dist.cod)] <- 0
     }
 
     return(dist.cod)
@@ -221,13 +226,22 @@ CSMF5 <-function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALSE
         }
     }
 
+     include.probAC <- FALSE
     # fix for removing the first 3 preg related death in standard input
     if(causenames[1] == "Not pregnant or recently delivered" &&
         causenames[2] == "Pregnancy ended within 6 weeks of death" &&
-        causenames[3] == "Pregnant at death"){
-            causeindex <- causeindex[-c(1:3)]
-            causenames <- causenames[-c(1:3)]
+        causenames[3] == "Pregnant at death"&&
+        causenames[65] == "Culture" &&
+        causenames[66] == "Emergency" &&
+        causenames[67] == "Health systems" &&
+        causenames[68] == "Inevitable" &&
+        causenames[69] == "Knowledge" &&
+        causenames[70] == "Resources"){
+            causeindex <- causeindex[-c(1:3, 65:70)]
+            causenames <- causenames[-c(1:3, 65:70)]
+            include.probAC <- TRUE
     }
+
 
     if(length(va) < 1){
 		cat("No va object found")
@@ -251,6 +265,7 @@ CSMF5 <-function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALSE
         for(i in 1:length(va)){
             if(is.null(va[[i]][16])) {undeter = undeter + 1; next}
             this.dist <- unlist(va[[i]][16])
+            if(include.probAC) this.dist[c(1:3, 65:70)] <- 0
             cutoff <- this.dist[order(this.dist, decreasing = TRUE)[top.aggregate]]
             undeter <- undeter + sum(this.dist[which(this.dist < cutoff)])
 
