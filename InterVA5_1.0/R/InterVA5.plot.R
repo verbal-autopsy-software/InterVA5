@@ -27,12 +27,20 @@ CSMF.interVA5 <- function(va){
         }
     }
 
+    include.probAC <- FALSE
     # fix for removing the first 3 preg related death in standard input
     if(causenames[1] == "Not pregnant or recently delivered" &&
         causenames[2] == "Pregnancy ended within 6 weeks of death" &&
-        causenames[3] == "Pregnant at death"){
-            causeindex <- causeindex[-c(1:3)]
-            causenames <- causenames[-c(1:3)]
+        causenames[3] == "Pregnant at death"&&
+        causenames[65] == "Culture" &&
+        causenames[66] == "Emergency" &&
+        causenames[67] == "Health systems" &&
+        causenames[68] == "Inevitable" &&
+        causenames[69] == "Knowledge" &&
+        causenames[70] == "Resources"){
+            causeindex <- causeindex[-c(1:3, 65:70)]
+            causenames <- causenames[-c(1:3, 65:70)]
+            include.probAC <- TRUE
     }
 
 
@@ -55,6 +63,7 @@ CSMF.interVA5 <- function(va){
     for(i in 1:length(va)){
         if(is.null(va[[i]][16])) next
         this.dist <- unlist(va[[i]][16])
+        if(include.probAC) this.dist <- this.dist[-c(1:3, 65:70)]
         if(max(this.dist) < 0.4){
           undeter <- undeter + sum(this.dist)
         }else{
@@ -75,6 +84,65 @@ CSMF.interVA5 <- function(va){
         names(dist.cod)<-c(causenames, "Undetermined")
     }else{
         dist.cod <- dist[causeindex]/sum(dist[causeindex])
+        names(dist.cod)<-causenames
+    }
+
+    return(dist.cod)
+}
+
+#' Summarize population level mortality fraction by Circumstance of Mortality Category
+#'
+#' The function takes input of a list of va object and calculates the
+#' mortality fraction by Circumstance of Mortality Category. 
+#'
+#' @param va The list of va object to summarize.
+#' @return \item{dist.cod}{The cause-specific mortality fraction (including undetermined category).}
+#' @author Jason Thomas, Zehang LI, Tyler McCormick, Sam Clark
+#' @keywords interVA
+#' @seealso \code{\link{CSMF5}}
+#' @examples
+#'
+#' data(SampleInput)
+#' sample.output <- InterVA5(SampleInput, HIV = "h", Malaria = "v", directory = "VA test",
+#'        filename = "VA_result", output = "extended", append = FALSE)
+#' ## Get CSMF without plots
+#' comcat<- COMCAT.interVA5(sample.output$VA)
+#'
+COMCAT.interVA5 <- function(va){
+   # for future compatibility with non-standard input
+    for(i in 1:length(va)){
+        if(!is.null(va[[i]]$wholeprob)){
+            causenames <- names(va[[i]]$wholeprob)[65:70]
+            causeindex <- 65:70
+            break
+        }
+    }
+    ## Check if there is a valid va object
+    if(length(va) < 1){
+        cat("No va object found")
+        return()
+    }
+    ## Initialize the population distribution
+    dist <- rep(0, 6)
+    multi <- 0
+
+    ## pick not simply the top 3 causes, but the top 3 causes reported by InterVA5
+    for(i in 1:length(va)){
+        if(is.null(va[[i]][16])) next
+        this.dist <- unlist(va[[i]][16])[65:70]
+        if(max(this.dist) < 0.5){
+          multi <- multi + 1
+        }else{
+            dist[which.max(this.dist)] <- dist[which.max(this.dist)] + 1
+        }
+    }
+    ## Normalize the probability for CODs
+    if(multi > 0){
+        dist.cod <- c(dist, multi)
+        dist.cod <- dist.cod/sum(dist.cod)
+        names(dist.cod)<-c(causenames, "Multiple")
+    }else{
+        dist.cod <- dist/sum(dist)
         names(dist.cod)<-causenames
     }
 
