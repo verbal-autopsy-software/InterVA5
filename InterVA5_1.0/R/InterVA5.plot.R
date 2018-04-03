@@ -52,8 +52,8 @@ CSMF.interVA5 <- function(va){
     ## Initialize the population distribution
     dist <- NULL
     for(i in 1:length(va)){
-        if(!is.null(va[[i]][16])){
-            dist <- rep(0, length(unlist(va[[i]][16])))
+        if(!is.null(va[[i]][15])){
+            dist <- rep(0, length(unlist(va[[i]][15])))
             break
         }
     }
@@ -61,8 +61,8 @@ CSMF.interVA5 <- function(va){
 
     ## pick not simply the top 3 causes, but the top 3 causes reported by InterVA5
     for(i in 1:length(va)){
-        if(is.null(va[[i]][16])) next
-        this.dist <- unlist(va[[i]][16])
+        if(is.null(va[[i]][15])) next
+        this.dist <- unlist(va[[i]][15])
         if(include.probAC) this.dist[c(1:3, 65:70)] <- 0
         if(max(this.dist) < 0.4){
           undeter <- undeter + sum(this.dist)
@@ -74,7 +74,7 @@ CSMF.interVA5 <- function(va){
 
             undeter <- undeter + sum(this.dist[which(this.dist < cutoff)])
             this.dist[which(this.dist < cutoff)] <- 0
-            if(!is.null(va[[i]][16])) dist <- dist + this.dist
+            if(!is.null(va[[i]][15])) dist <- dist + this.dist
         }
     }
     ## Normalize the probability for CODs
@@ -130,8 +130,8 @@ COMCAT.interVA5 <- function(va){
 
     ## pick not simply the top 3 causes, but the top 3 causes reported by InterVA5
     for(i in 1:length(va)){
-        if(is.null(va[[i]][16])) next
-        this.dist <- unlist(va[[i]][16])[65:70]
+        if(is.null(va[[i]][15])) next
+        this.dist <- unlist(va[[i]][15])[65:70]
         if(max(this.dist) < 0.5){
           multi <- multi + 1
         }else{
@@ -250,8 +250,8 @@ CSMF5 <- function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALS
     ## Initialize the population distribution
     dist <- NULL
     for(i in 1:length(va)){
-        if(!is.null(va[[i]][16])){
-	        dist <- rep(0, length(unlist(va[[i]][16])))
+        if(!is.null(va[[i]][15])){
+	        dist <- rep(0, length(unlist(va[[i]][15])))
 	        break
         }
     }
@@ -263,14 +263,14 @@ CSMF5 <- function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALS
     ## Add the probabilities together
 	if(!InterVA.rule){
         for(i in 1:length(va)){
-            if(is.null(va[[i]][16])) {undeter = undeter + 1; next}
-            this.dist <- unlist(va[[i]][16])
+            if(is.null(va[[i]][15])) {undeter = undeter + 1; next}
+            this.dist <- unlist(va[[i]][15])
             if(include.probAC) this.dist[c(1:3, 65:70)] <- 0
             cutoff <- this.dist[order(this.dist, decreasing = TRUE)[top.aggregate]]
             undeter <- undeter + sum(this.dist[which(this.dist < cutoff)])
 
             this.dist[which(this.dist < cutoff)] <- 0
-            if(!is.null(va[[i]][16])) dist <- dist + this.dist
+            if(!is.null(va[[i]][15])) dist <- dist + this.dist
         }
             ## Normalize the probability for CODs
         if(undeter > 0){
@@ -385,7 +385,7 @@ InterVA5.plot <- function(va, type="bar", min.prob = 0.01, ... ){
 		return()
 	}
     ## Find the probability distribution
-	dist <- unlist(va[16])
+	dist <- unlist(va[15])
     dist.cod <- dist[causeindex]/sum(dist[causeindex])
     ## Check if there is CODs above the minimum cut-off for prob
     if(max(dist.cod) < min.prob){

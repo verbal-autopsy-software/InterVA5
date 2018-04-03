@@ -49,8 +49,8 @@ summary.interVA5 <- function(object, top = 5, id = NULL, InterVA.rule = TRUE, ..
     ## Initialize the population distribution
     dist <- NULL
     for(i in 1:length(va)){
-        if(!is.null(va[[i]][16])){
-            dist <- rep(0, length(unlist(va[[i]][16])))
+        if(!is.null(va[[i]][15])){
+            dist <- rep(0, length(unlist(va[[i]][15])))
             break
         }
     }
@@ -61,8 +61,8 @@ summary.interVA5 <- function(object, top = 5, id = NULL, InterVA.rule = TRUE, ..
     ## Add the probabilities together
     if(!InterVA.rule){
         for(i in 1:length(va)){
-            if(is.null(va[[i]][16])) {undeter = undeter + 1; next}
-            this.dist <- unlist(va[[i]][16])
+            if(is.null(va[[i]][15])) {undeter = undeter + 1; next}
+            this.dist <- unlist(va[[i]][15])
             dist <- dist + this.dist
         }
         ## Normalize the probability for CODs
@@ -88,11 +88,11 @@ summary.interVA5 <- function(object, top = 5, id = NULL, InterVA.rule = TRUE, ..
         index <- which(object$ID == id)
         if(is.null(index)){
             stop("Error: provided ID not found")
-        }else if(is.null(va[[i]][16])){
+        }else if(is.null(va[[i]][15])){
             out$undet <- TRUE
         }else{
             out$undet <- FALSE
-            probs.tmp <- object$VA[[index]][16][[1]]
+            probs.tmp <- object$VA[[index]][15][[1]]
             out$preg <- probs.tmp[1:3]
             out$probs <- probs.tmp[causeindex]
             topcauses <- sort(out$probs, decreasing = TRUE)[1:top]
@@ -141,8 +141,8 @@ print.interVA5_summary <- function(x, ...){
         csmf.out.ordered[, 2] <- round(csmf.out.ordered[, 2], 4)
         print(csmf.out.ordered, right = FALSE, row.names = F)
         cat("\n")
-        cat(paste("Top", x$top,  "Circumstance of Mortality Category:\n"))
-        csmf.out.ordered <- x$comcat[1:x$top, ]
+        cat(paste("Top", ming(x$top,6),  "Circumstance of Mortality Category:\n"))
+        csmf.out.ordered <- x$comcat[1:min(x$top,6), ]
         csmf.out.ordered[, 2] <- round(csmf.out.ordered[, 2], 4)
         print(csmf.out.ordered, right = FALSE, row.names = F)
     }

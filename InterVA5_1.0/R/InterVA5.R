@@ -98,7 +98,7 @@ InterVA5 <- function (Input, HIV, Malaria, directory = NULL, filename = "VA5_res
         if (!write) {
             return()
         }
-        prob <- unlist(x[16])
+        prob <- unlist(x[15])
         x <- x[-15]
         x <- unlist(c(as.matrix(x), as.matrix(prob)))
         filename <- paste(filename, ".csv", sep = "")
