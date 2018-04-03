@@ -13,13 +13,13 @@
 #' @keywords InterVA
 #' @examples
 #'
-#' data(SampleInput)
+#' data(SampleInputV5)
 #' ## to get easy-to-read version of causes of death make sure the column
 #' ## orders match interVA5 standard input this can be monitored by checking
 #' ## the warnings of column names
 #'
-#' sample.output1 <- InterVA5(SampleInput, HIV = "h", Malaria = "l", directory = "VA test",
-#'     filename = "VA_result", output = "extended", append = FALSE)
+#' sample.output1 <- InterVA5(SampleInputV5, HIV = "h", Malaria = "l", directory = "VA5_test",
+#'     filename = "VA5_result", output = "extended", append = FALSE)
 #'
 #' summary(sample.output1)
 #' summary(sample.output1, top = 10)
@@ -27,12 +27,12 @@
 summary.interVA5 <- function(object, top = 5, id = NULL, InterVA.rule = TRUE, ...){
 
     if(is.null(object$dev)){
-        data("causetext", envir = environment())
-    	causetext <- get("causetext", envir  = environment())
-    	causenames <- causetext[4:64,2]
+        data("causetextV5", envir = environment())
+    	causetextV5 <- get("causetextV5", envir  = environment())
+    	causenames <- causetextV5[4:64,2]
     	causeindex <- 4:64
     }else{
-        InterVA <- FALSE
+        InterVA5 <- FALSE
         causenames <- names(object$VA[[1]]$wholeprob)
         causeindex <- 1:length(causenames)
     }
@@ -120,7 +120,7 @@ summary.interVA5 <- function(object, top = 5, id = NULL, InterVA.rule = TRUE, ..
 print.interVA5_summary <- function(x, ...){
     # print single death summary
     if(!is.null(x$id.toprint)){
-        cat(paste0("InterVA-5 fitted top ", x$top, " causes for death ID: ", x$id.toprint, "\n\n"))
+        cat(paste0("InterVA5 fitted top ", x$top, " causes for death ID: ", x$id.toprint, "\n\n"))
         if(x$undet){
             cat("Cause of death undetermined\n")
         }else{
@@ -129,9 +129,9 @@ print.interVA5_summary <- function(x, ...){
         }
     # print population summary
     }else{
-        cat(paste("InterVA-5 fitted on", x$N, "deaths\n"))
+        cat(paste("InterVA5 fitted on", x$N, "deaths\n"))
         if(x$InterVA.rule){
-            cat("CSMF calculated using reported causes by InterVA-5 only\nThe remaining probabilities are assigned to 'Undetermined'\n")
+            cat("CSMF calculated using reported causes by InterVA5 only\nThe remaining probabilities are assigned to 'Undetermined'\n")
         }else{
             cat("CSMF calculated using distribution over all causes\nwithout 'Undetermined' category\n")
         }

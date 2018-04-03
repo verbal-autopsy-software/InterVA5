@@ -1,14 +1,14 @@
 exportPattern("^[[:alpha:]]+")
 
-#export(causetext)
+#export(causetextV5)
 #export(CSMF.interVA5)
 #export(COMCAT.interVA5)
-#export(CSMF)
-#export(InterVA.plot)
-#export(InterVA)
+#export(CSMF5)
+#export(InterVA5.plot)
+#export(InterVA5)
 #export(Population.summary)
-#export(probbase)
-#export(SampleInput)
+#export(probbaseV5)
+#export(SampleInputV5)
 
 
 

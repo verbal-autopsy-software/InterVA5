@@ -10,11 +10,11 @@
 #' @seealso \code{\link{CSMF5}}
 #' @examples
 #'
-#' data(SampleInput)
-#' sample.output <- InterVA5(SampleInput, HIV = "h", Malaria = "v", directory = "VA test",
-#'        filename = "VA_result", output = "extended", append = FALSE)
+#' data(SampleInputV5)
+#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
+#'        filename = "VA5_result", output = "extended", append = FALSE)
 #' ## Get CSMF without plots
-#' csmf<- CSMF.interVA5(sample.output$VA)
+#' csmf <- CSMF.interVA5(sample.output$VA5)
 #' 
 #'
 CSMF.interVA5 <- function(va){
@@ -29,15 +29,15 @@ CSMF.interVA5 <- function(va){
 
     include.probAC <- FALSE
     # fix for removing the first 3 preg related death in standard input
-    if(causenames[1] == "Not pregnant or recently delivered" &&
-        causenames[2] == "Pregnancy ended within 6 weeks of death" &&
-        causenames[3] == "Pregnant at death"&&
-        causenames[65] == "Culture" &&
-        causenames[66] == "Emergency" &&
-        causenames[67] == "Health systems" &&
-        causenames[68] == "Inevitable" &&
-        causenames[69] == "Knowledge" &&
-        causenames[70] == "Resources"){
+    if(causenames[ 1] == "Not pregnant or recently delivered" &&
+       causenames[ 2] == "Pregnancy ended within 6 weeks of death" &&
+       causenames[ 3] == "Pregnant at death"&&
+       causenames[65] == "Culture" &&
+       causenames[66] == "Emergency" &&
+       causenames[67] == "Health systems" &&
+       causenames[68] == "Inevitable" &&
+       causenames[69] == "Knowledge" &&
+       causenames[70] == "Resources"){
             causeindex <- causeindex[-c(1:3, 65:70)]
             causenames <- causenames[-c(1:3, 65:70)]
             include.probAC <- TRUE
@@ -104,11 +104,11 @@ CSMF.interVA5 <- function(va){
 #' @seealso \code{\link{CSMF5}}
 #' @examples
 #'
-#' data(SampleInput)
-#' sample.output <- InterVA5(SampleInput, HIV = "h", Malaria = "v", directory = "VA test",
-#'        filename = "VA_result", output = "extended", append = FALSE)
+#' data(SampleInputV5)
+#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
+#'        filename = "VA5_result", output = "extended", append = FALSE)
 #' ## Get CSMF without plots
-#' comcat<- COMCAT.interVA5(sample.output$VA)
+#' comcat<- COMCAT.interVA5(sample.output$VA5)
 #'
 COMCAT.interVA5 <- function(va){
    # for future compatibility with non-standard input
@@ -185,9 +185,9 @@ COMCAT.interVA5 <- function(va){
 #' @keywords interVA
 #' @examples
 #'
-#' data(SampleInput)
-#' sample.output <- InterVA5(SampleInput, HIV = "h", Malaria = "v", directory = "VA test",
-#'                           filename = "VA_result", output = "extended", append = FALSE)
+#' data(SampleInputV5)
+#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
+#'                           filename = "VA5_result", output = "extended", append = FALSE)
 #'
 #' ## Get CSMF by considering only top 3 causes reported by InterVA5.
 #' ## This is equivalent to using CSMF.interVA5() command Note that
@@ -210,11 +210,11 @@ COMCAT.interVA5 <- function(va){
 #'   top.plot = 5, main = "Top 5 population COD distribution",
 #'   cex.main = 1)
 #'
-CSMF5 <-function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALSE, type="bar",  top.plot = 10, min.prob = 0, ... ) {
+CSMF5 <- function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALSE, type="bar",  top.plot = 10, min.prob = 0, ... ) {
 
     ## Check if there is a valid va object
     if(class(va) == "interVA5"){
-        va <- va$VA
+        va <- va$VA5
     }
 
     # for future compatibility with non-standard input
@@ -326,9 +326,9 @@ CSMF5 <-function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALSE
 
 }
 
-#' Plot a individual level distribution of va probabilities.
+#' Plot an individual-level distribution of va probabilities.
 #'
-#' The function takes input of a single va object and produces a summary plot
+#' The function takes an input of a single va object and produces a summary plot
 #' for it.
 #'
 #'
@@ -345,18 +345,18 @@ CSMF5 <-function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALSE
 #' @keywords InterVA
 #' @examples
 #'
-#' data(SampleInput)
-#' sample.output <- InterVA5(SampleInput, HIV = "h", Malaria = "v", directory = "VA test",
-#'     filename = "VA_result", output = "extended", append = FALSE)
+#' data(SampleInputV5)
+#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA_test",
+#'     filename = "VA5_result", output = "extended", append = FALSE)
 #'
 #' ## Individual level summary using pie chart
-#' InterVA5.plot(sample.output$VA[[7]], type = "pie", min.prob = 0.01,
+#' InterVA5.plot(sample.output$VA5[[7]], type = "pie", min.prob = 0.01,
 #'     main = "1st sample VA analysis using pie chart", clockwise = FALSE,
 #'     radius = 0.6, cex = 0.6, cex.main = 0.8)
 #'
 #'
 #' ## Individual level summary using bar chart
-#' InterVA5.plot(sample.output$VA[[7]], type = "bar", min.prob = 0.01,
+#' InterVA5.plot(sample.output$VA5[[7]], type = "bar", min.prob = 0.01,
 #'     main = "2nd sample VA analysis using bar chart", cex.main = 0.8)
 #'
 InterVA5.plot <- function(va, type="bar", min.prob = 0.01, ... ){
