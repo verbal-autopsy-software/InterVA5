@@ -346,7 +346,7 @@ CSMF5 <- function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALS
 #' @examples
 #'
 #' data(SampleInputV5)
-#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA_test",
+#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
 #'     filename = "VA5_result", output = "extended", append = FALSE)
 #'
 #' ## Individual level summary using pie chart
