@@ -18,11 +18,11 @@ cause-specific mortality fraction. It only calculates CSMF5 as aggregation of up
 }
 \examples{
 
-data(SampleInput)
-sample.output <- InterVA5(SampleInput, HIV = "h", Malaria = "v", directory = "VA test",
-       filename = "VA_result", output = "extended", append = FALSE)
+data(SampleInputV5)
+sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
+       filename = "VA5_result", output = "extended", append = FALSE)
 ## Get CSMF without plots
-csmf<- CSMF.interVA5(sample.output$VA)
+csmf <- CSMF.interVA5(sample.output$VA5)
 
 
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/InterVA5.plot.R
 \name{InterVA5.plot}
 \alias{InterVA5.plot}
-\title{Plot a individual level distribution of va probabilities.}
+\title{Plot an individual-level distribution of va probabilities.}
 \usage{
 InterVA5.plot(va, type = "bar", min.prob = 0.01, ...)
 }
@@ -21,23 +21,23 @@ graphical paramters (see \code{\link[graphics]{par}}). They will affect the
 main title, size and font of labels, and the radius of the pie chart.}
 }
 \description{
-The function takes input of a single va object and produces a summary plot
+The function takes an input of a single va object and produces a summary plot
 for it.
 }
 \examples{
 
-data(SampleInput)
-sample.output <- InterVA5(SampleInput, HIV = "h", Malaria = "v", directory = "VA test",
-    filename = "VA_result", output = "extended", append = FALSE)
+data(SampleInputV5)
+sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA_test",
+    filename = "VA5_result", output = "extended", append = FALSE)
 
 ## Individual level summary using pie chart
-InterVA5.plot(sample.output$VA[[7]], type = "pie", min.prob = 0.01,
+InterVA5.plot(sample.output$VA5[[7]], type = "pie", min.prob = 0.01,
     main = "1st sample VA analysis using pie chart", clockwise = FALSE,
     radius = 0.6, cex = 0.6, cex.main = 0.8)
 
 
 ## Individual level summary using bar chart
-InterVA5.plot(sample.output$VA[[7]], type = "bar", min.prob = 0.01,
+InterVA5.plot(sample.output$VA5[[7]], type = "bar", min.prob = 0.01,
     main = "2nd sample VA analysis using bar chart", cex.main = 0.8)
 
 }

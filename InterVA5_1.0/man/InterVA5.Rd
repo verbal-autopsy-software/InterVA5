@@ -4,13 +4,13 @@
 \alias{InterVA5}
 \title{Provide InterVA5 analysis on the data input.}
 \usage{
-InterVA5(Input, HIV, Malaria, directory = NULL, filename = "VA_result",
+InterVA5(Input, HIV, Malaria, directory = NULL, filename = "VA5_result",
   output = "classic", append = FALSE, groupcode = FALSE, write = TRUE,
   ...)
 }
 \arguments{
 \item{Input}{A matrix input, or data read from csv files in the same format
-as required by InterVA5. Sample input is included as data(SampleInput).}
+as required by InterVA5. Sample input is included as data(SampleInputV5).}
 
 \item{HIV}{An indicator of the level of prevalence of HIV. The input should
 be one of the following: "h"(high),"l"(low), or "v"(very low).}
@@ -55,10 +55,10 @@ likelihood of 3rd cause} \item{wholeprob}{ full distribution of causes of death}
 }
 \description{
 This function implements the algorithm in the InterVA5 software.  It
-produces individual cause of death and population cause-specific mortality
+produces individual cause of death (COD) and population cause-specific mortality
 fractions.  The output is saved in a .csv file specified by user.
 The calculation is based on the conditional and prior distribution
-of 61 CODs. The function also could save the full probability distibution
+of 61 CODs. The function can also  save the full probability distibution
 of each individual to file. All information about each individual is
 saved to a va class object.
 }
@@ -66,22 +66,22 @@ saved to a va class object.
 Be careful if the input file does not match InterVA5 input format strictly.
 The function will run normally as long as the number of symptoms are
 correct. Any inconsistent symptom names will be printed in console as
-warning. If there's wrong match of symptom from warning, please change in
-the input to correct orders.
+warning. If there is a wrong match of symptom from warning, please change 
+the input to the correct order.
 }
 \examples{
 
-data(SampleInput)
+data(SampleInputV5)
 ## to get easy-to-read version of causes of death make sure the column
 ## orders match interVA5 standard input this can be monitored by checking
 ## the warnings of column names
 
-sample.output1 <- InterVA5(SampleInput, HIV = "h", Malaria = "l", directory = "VA test",
-    filename = "VA_result", output = "extended", append = FALSE)
+sample.output1 <- InterVA5(SampleInputV5, HIV = "h", Malaria = "l", directory = "VA5_test",
+    filename = "VA5_result", output = "extended", append = FALSE)
 
 ## to get causes of death with group code for further usage
-sample.output2 <- InterVA5(SampleInput, HIV = "h", Malaria = "l", directory = "VA test",
-    filename = "VA_result_wt_code", output = "classic", append = FALSE,
+sample.output2 <- InterVA5(SampleInputV5, HIV = "h", Malaria = "l", directory = "VA5_test",
+    filename = "VA5_result_wt_code", output = "classic", append = FALSE,
     groupcode = TRUE)
 
 }

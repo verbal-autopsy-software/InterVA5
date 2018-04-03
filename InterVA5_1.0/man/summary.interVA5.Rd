@@ -25,13 +25,13 @@ This function prints the summary message of the fitted results.
 }
 \examples{
 
-data(SampleInput)
+data(SampleInputV5)
 ## to get easy-to-read version of causes of death make sure the column
 ## orders match interVA5 standard input this can be monitored by checking
 ## the warnings of column names
 
-sample.output1 <- InterVA5(SampleInput, HIV = "h", Malaria = "l", directory = "VA test",
-    filename = "VA_result", output = "extended", append = FALSE)
+sample.output1 <- InterVA5(SampleInputV5, HIV = "h", Malaria = "l", directory = "VA5_test",
+    filename = "VA5_result", output = "extended", append = FALSE)
 
 summary(sample.output1)
 summary(sample.output1, top = 10)
