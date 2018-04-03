@@ -141,7 +141,7 @@ print.interVA5_summary <- function(x, ...){
         csmf.out.ordered[, 2] <- round(csmf.out.ordered[, 2], 4)
         print(csmf.out.ordered, right = FALSE, row.names = F)
         cat("\n")
-        cat(paste("Top", ming(x$top,6),  "Circumstance of Mortality Category:\n"))
+        cat(paste("Top", min(x$top,6),  "Circumstance of Mortality Category:\n"))
         csmf.out.ordered <- x$comcat[1:min(x$top,6), ]
         csmf.out.ordered[, 2] <- round(csmf.out.ordered[, 2], 4)
         print(csmf.out.ordered, right = FALSE, row.names = F)
