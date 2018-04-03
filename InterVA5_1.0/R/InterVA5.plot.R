@@ -350,13 +350,13 @@ CSMF5 <- function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALS
 #'     filename = "VA5_result", output = "extended", append = FALSE)
 #'
 #' ## Individual level summary using pie chart
-#' InterVA5.plot(sample.output$VA5[[7]], type = "pie", min.prob = 0.01,
+#' InterVA5.plot(sample.output$VA5[[3]], type = "pie", min.prob = 0.01,
 #'     main = "1st sample VA analysis using pie chart", clockwise = FALSE,
 #'     radius = 0.6, cex = 0.6, cex.main = 0.8)
 #'
 #'
 #' ## Individual level summary using bar chart
-#' InterVA5.plot(sample.output$VA5[[7]], type = "bar", min.prob = 0.01,
+#' InterVA5.plot(sample.output$VA5[[3]], type = "bar", min.prob = 0.01,
 #'     main = "2nd sample VA analysis using bar chart", cex.main = 0.8)
 #'
 InterVA5.plot <- function(va, type="bar", min.prob = 0.01, ... ){
