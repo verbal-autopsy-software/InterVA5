@@ -19,10 +19,11 @@ mortality fraction by Circumstance of Mortality Category.
 \examples{
 
 data(SampleInputV5)
-sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
+sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", 
+       write=TRUE, directory = tempdir(),
        filename = "VA5_result", output = "extended", append = FALSE)
 ## Get CSMF without plots
-comcat<- COMCAT.interVA5(sample.output$VA5)
+comcat <- COMCAT.interVA5(sample.output$VA5)
 
 }
 \seealso{

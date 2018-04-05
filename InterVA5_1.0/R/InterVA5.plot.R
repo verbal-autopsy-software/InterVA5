@@ -11,8 +11,8 @@
 #' @examples
 #'
 #' data(SampleInputV5)
-#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
-#'        filename = "VA5_result", output = "extended", append = FALSE)
+#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", write=TRUE,
+#'        directory = tempdir(), filename = "VA5_result", output = "extended", append = FALSE)
 #' ## Get CSMF without plots
 #' csmf <- CSMF.interVA5(sample.output$VA5)
 #' 
@@ -105,10 +105,11 @@ CSMF.interVA5 <- function(va){
 #' @examples
 #'
 #' data(SampleInputV5)
-#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
+#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", 
+#'        write=TRUE, directory = tempdir(),
 #'        filename = "VA5_result", output = "extended", append = FALSE)
 #' ## Get CSMF without plots
-#' comcat<- COMCAT.interVA5(sample.output$VA5)
+#' comcat <- COMCAT.interVA5(sample.output$VA5)
 #'
 COMCAT.interVA5 <- function(va){
    # for future compatibility with non-standard input
@@ -186,8 +187,9 @@ COMCAT.interVA5 <- function(va){
 #' @examples
 #'
 #' data(SampleInputV5)
-#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
-#'                           filename = "VA5_result", output = "extended", append = FALSE)
+#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", write = TRUE, 
+#'        directory = tempdir(), filename = "VA5_result", output = "extended", 
+#'        append = FALSE)
 #'
 #' ## Get CSMF by considering only top 3 causes reported by InterVA5.
 #' ## This is equivalent to using CSMF.interVA5() command Note that
@@ -346,8 +348,8 @@ CSMF5 <- function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALS
 #' @examples
 #'
 #' data(SampleInputV5)
-#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
-#'     filename = "VA5_result", output = "extended", append = FALSE)
+#' sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", write = TRUE, 
+#'     directory = tempdir(), filename = "VA5_result", output = "extended", append = FALSE)
 #'
 #' ## Individual level summary using pie chart
 #' InterVA5.plot(sample.output$VA5[[3]], type = "pie", min.prob = 0.01,

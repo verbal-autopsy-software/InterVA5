@@ -27,8 +27,8 @@ for it.
 \examples{
 
 data(SampleInputV5)
-sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
-    filename = "VA5_result", output = "extended", append = FALSE)
+sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", write = TRUE, 
+    directory = tempdir(), filename = "VA5_result", output = "extended", append = FALSE)
 
 ## Individual level summary using pie chart
 InterVA5.plot(sample.output$VA5[[3]], type = "pie", min.prob = 0.01,

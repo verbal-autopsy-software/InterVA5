@@ -45,8 +45,9 @@ for the population distribution.
 \examples{
 
 data(SampleInputV5)
-sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", directory = "VA5_test",
-                          filename = "VA5_result", output = "extended", append = FALSE)
+sample.output <- InterVA5(SampleInputV5, HIV = "h", Malaria = "v", write = TRUE, 
+       directory = tempdir(), filename = "VA5_result", output = "extended", 
+       append = FALSE)
 
 ## Get CSMF by considering only top 3 causes reported by InterVA5.
 ## This is equivalent to using CSMF.interVA5() command Note that

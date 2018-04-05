@@ -20,9 +20,13 @@
 #' be one of the following: "h"(high),"l"(low), or "v"(very low).
 #' @param Malaria An indicator of the level of prevalence of Malaria. The input
 #' should be one of the following: "h"(high),"l"(low), or "v"(very low).
+#' @param write A logical value indicating whether or not the output (including
+#' errors and warnings) will be saved to file.  If the value is set to TRUE, the
+#' user must also provide a value for the parameter "directory".
 #' @param directory The directory to store the output from InterVA5. It should
 #' either be an existing valid directory, or a new folder to be created. If no
-#' path is given, the current working directory will be used.
+#' path is given and the parameter for "write" is true, then the function stops
+#' and and error message is produced.
 #' @param filename The filename the user wish to save the output. No extension
 #' needed. The output is in .csv format by default.
 #' @param output "classic": The same deliminated output format as InterVA5; or
@@ -32,8 +36,6 @@
 #' should be appended to the existing file.
 #' @param groupcode A logical value indicating whether or not the group code
 #' will be included in the output causes.
-#' @param write A logical value indicating whether or not the output (including
-#' errors and warnings) will be saved to file.
 #' @param ... not used
 #' @return \item{ID }{ identifier from batch (input) file} \item{MALPREV
 #' }{ selected malaria prevalence} \item{HIVPREV }{ selected HIV prevalence}
@@ -57,17 +59,16 @@
 #' ## orders match interVA5 standard input this can be monitored by checking
 #' ## the warnings of column names
 #'
-#' sample.output1 <- InterVA5(SampleInputV5, HIV = "h", Malaria = "l", directory = "VA5_test",
-#'     filename = "VA5_result", output = "extended", append = FALSE)
+#' sample.output1 <- InterVA5(SampleInputV5, HIV = "h", Malaria = "l", write=TRUE, 
+#'     directory = tempdir(), filename = "VA5_result", output = "extended", append = FALSE)
 #'
 #' ## to get causes of death with group code for further usage
-#' sample.output2 <- InterVA5(SampleInputV5, HIV = "h", Malaria = "l", directory = "VA5_test",
-#'     filename = "VA5_result_wt_code", output = "classic", append = FALSE,
-#'     groupcode = TRUE)
+#' sample.output2 <- InterVA5(SampleInputV5, HIV = "h", Malaria = "l", 
+#'     write = TRUE, directory = tempdir(), filename = "VA5_result_wt_code", output = "classic", 
+#'     append = FALSE, groupcode = TRUE)
 #'
-InterVA5 <- function (Input, HIV, Malaria, directory = NULL, filename = "VA5_result", 
+InterVA5 <- function (Input, HIV, Malaria, write = FALSE, directory = NULL, filename = "VA5_result", 
                       output = "classic", append = FALSE, groupcode = FALSE,
-                      write = TRUE, 
                       ...) 
 {
     va5 <- function(ID, MALPREV, HIVPREV, PREGSTAT, PREGLIK, CAUSE1, LIK1, CAUSE2, LIK2, CAUSE3, LIK3, INDET,
@@ -104,6 +105,8 @@ InterVA5 <- function (Input, HIV, Malaria, directory = NULL, filename = "VA5_res
         filename <- paste(filename, ".csv", sep = "")
         write.table(t(x), file = filename, sep = ",", append = TRUE, row.names = FALSE, col.names = FALSE)
     }
+    if (is.null(directory) & write)
+        stop("error: please provide a directory (required when write=TRUE)")
     if (is.null(directory)) 
         directory = getwd()
     dir.create(directory, showWarnings = FALSE)

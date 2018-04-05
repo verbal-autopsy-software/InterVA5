@@ -18,8 +18,9 @@
 #' ## orders match interVA5 standard input this can be monitored by checking
 #' ## the warnings of column names
 #'
-#' sample.output1 <- InterVA5(SampleInputV5, HIV = "h", Malaria = "l", directory = "VA5_test",
-#'     filename = "VA5_result", output = "extended", append = FALSE)
+#' sample.output1 <- InterVA5(SampleInputV5, HIV = "h", Malaria = "l", 
+#'     write = TRUE, directory = tempdir(), filename = "VA5_result", 
+#'     output = "extended", append = FALSE)
 #'
 #' summary(sample.output1)
 #' summary(sample.output1, top = 10)
