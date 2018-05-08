@@ -260,8 +260,8 @@ InterVA5 <- function (Input, HIV, Malaria, write = TRUE, directory = NULL, filen
 
         tmp <- DataCheck5(input.current, id=index.current, probbaseV5=probbaseV5, write=write)
         input.current <- tmp$Output
-        firstPass <- tmp$firstPass
-        secondPass <- tmp$secondPass
+        firstPass <- rbind(firstPass, tmp$firstPass)
+        secondPass <- rbind(secondPass, tmp$secondPass)
 
         subst.vector <- rep(NA, length=S)
         subst.vector[probbaseV5[,6]=="N"] <- 0
