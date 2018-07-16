@@ -7,8 +7,9 @@
 \newcommand{\CRANpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 \newcommand{\sspace}{\ifelse{latex}{\out{~}}{ }}
 
-\section{Changes in version 1.0.2 (2018-07-06)}{
+\section{Changes in version 1.0.2 (2018-07-16)}{
  \itemize{
    \item Add InSilicoVA rule of data check.
+   \item Fix typo in checking WHO 2016 input using InterVA5 rules.
  }
 }
