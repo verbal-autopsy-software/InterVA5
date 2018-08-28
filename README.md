@@ -1,6 +1,4 @@
 # InterVA5
-==========
-
 working version of InterVA5 R replicate
 
 This is an R package replicating InterVA-5 software. For stable version of the package please visit http://cran.r-project.org/web/packages/InterVA5/index.html
