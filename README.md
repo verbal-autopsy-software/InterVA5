@@ -1,5 +1,7 @@
-# InterVA5
-working version of InterVA5 R replicate
+# InterVA5 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/InterVA5)](https://cran.r-project.org/package=InterVA5)
+
+R version of the 'InterVA5' software (<http://www.interva.net>) for coding cause of death from verbal autopsies. It also provides simple graphical representation of individual and population level statistics.
+
 
 This is an R package replicating InterVA-5 software. For stable version of the package please visit http://cran.r-project.org/web/packages/InterVA5/index.html
 
