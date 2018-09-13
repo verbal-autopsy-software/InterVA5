@@ -1,4 +1,4 @@
-# InterVA5 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/InterVA5)](https://cran.r-project.org/package=InterVA5)
+# InterVA5  [![Build Status](https://travis-ci.org/verbal-autopsy-software/InterVA5.svg?branch=master)](https://travis-ci.org/verbal-autopsy-software/InterVA5) [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/InterVA5)](https://cran.r-project.org/package=InterVA5)
 
 R version of the 'InterVA5' software (<http://www.interva.net>) for coding cause of death from verbal autopsies. It also provides simple graphical representation of individual and population level statistics.
 
