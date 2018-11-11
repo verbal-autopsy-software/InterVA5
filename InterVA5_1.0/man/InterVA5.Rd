@@ -87,7 +87,7 @@ sample.output1 <- InterVA5(RandomVA5, HIV = "h", Malaria = "l", write=FALSE,
 \dontrun{
 ## to get causes of death with group code for further usage
 sample.output2 <- InterVA5(RandomVA5, HIV = "h", Malaria = "l", 
-    write = FALSE, directory = tempdir(), filename = "VA5_result_wt_code", output = "classic", 
+    write = FALSE, directory = "VA test", filename = "VA5_result_wt_code", output = "classic", 
     append = FALSE, groupcode = TRUE)
 }
 

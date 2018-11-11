@@ -69,7 +69,7 @@
 #' \dontrun{
 #' ## to get causes of death with group code for further usage
 #' sample.output2 <- InterVA5(RandomVA5, HIV = "h", Malaria = "l", 
-#'     write = FALSE, directory = tempdir(), filename = "VA5_result_wt_code", output = "classic", 
+#'     write = FALSE, directory = "VA test", filename = "VA5_result_wt_code", output = "classic", 
 #'     append = FALSE, groupcode = TRUE)
 #'}
 #' 
@@ -324,15 +324,15 @@ InterVA5 <- function (Input, HIV, Malaria, write = TRUE, directory = NULL, filen
         }
         if (which.max(prob_A) == 1 && prob_A[1] >= 0.1 && reproductiveAge == 1) {
             preg_state <- "Not pregnant or recently delivered"
-            lik.preg <- round(prob_A[1]/sum(prob_A) * 100)
+            lik.preg <- as.numeric(round(prob_A[1]/sum(prob_A) * 100))
         }
         if (which.max(prob_A) == 2 && prob_A[2] >= 0.1 && reproductiveAge == 1) {
             preg_state <- "Pregnancy ended within 6 weeks of death"
-            lik.preg <- round(prob_A[2]/sum(prob_A) * 100)
+            lik.preg <- as.numeric(round(prob_A[2]/sum(prob_A) * 100))
         }
         if (which.max(prob_A) == 3 && prob_A[3] >= 0.1 && reproductiveAge == 1) {
             preg_state <- "Pregnant at death"
-            lik.preg <- round(prob_A[3]/sum(prob_A) * 100)
+            lik.preg <- as.numeric(round(prob_A[3]/sum(prob_A) * 100))
         }
 
         ## Determine the output of InterVA
