@@ -10,3 +10,5 @@ License: GPL-3
 NeedsCompilation: no
 Repository: CRAN
 RoxygenNote: 6.1.0
+Suggests: 
+    testthat
