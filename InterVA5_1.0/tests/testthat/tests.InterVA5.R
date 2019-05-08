@@ -1,8 +1,7 @@
 context("InterVA5 Algorithm")
 
-# read in the dummydata created by InterVA5_dummy_v2.R (also in the test directory)
-# dummy data is not created by the script here in case the probbase file changes unintentionally
-load("InterVA5_dummy_v2.RData")
+# generate dummydata
+source("InterVA5_dummy_v2.R")
 
 # A group
 for (cod in rownames(dummydata)[grep("a_", rownames(dummydata))]){
