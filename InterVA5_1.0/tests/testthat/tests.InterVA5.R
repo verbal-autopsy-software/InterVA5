@@ -4,7 +4,7 @@ context("InterVA5 Algorithm")
 source("InterVA5_dummy_v2.R")
 
 # A group
-for (cod in rownames(dummydata)[grep("a_", rownames(dummydata))]){
+for (cod in rownames(dummydata)[grep("^a_", rownames(dummydata))]){
   test_that(paste0(cod, " (", dummydata[cod, "ID"], ")"), {
 
     out <- InterVA5(dummydata[cod,, drop=FALSE], HIV = "l", Malaria = "l", write=F)
@@ -15,7 +15,7 @@ for (cod in rownames(dummydata)[grep("a_", rownames(dummydata))]){
 }
 
 # B group
-for (cod in rownames(dummydata)[grep("b_", rownames(dummydata))]){
+for (cod in rownames(dummydata)[grep("^b_", rownames(dummydata))]){
   test_that(paste0(cod, " (", dummydata[cod, "ID"], ")"), {
 
     out <- InterVA5(dummydata[cod,, drop=FALSE], HIV = "l", Malaria = "l", write=F)
@@ -26,7 +26,7 @@ for (cod in rownames(dummydata)[grep("b_", rownames(dummydata))]){
 }
 
 # C group
-for (cod in rownames(dummydata)[grep("c_", rownames(dummydata))]){
+for (cod in rownames(dummydata)[grep("^c_", rownames(dummydata))]){
   test_that(paste0(cod, " (", dummydata[cod, "ID"], ")"), {
 
     out <- InterVA5(dummydata[cod,, drop=FALSE], HIV = "l", Malaria = "l", write=F)

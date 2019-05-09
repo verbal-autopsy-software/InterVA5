@@ -26,7 +26,8 @@ probs <- probs %>% apply(2, as.numeric)
 
 # make row names symptoms
 rownames(probs) <- c("Prior", probbaseV5[2:nrow(probbaseV5),1])
-data(causetextV5)
+data("causetextV5", envir = environment())
+causetextV5 <- get("causetextV5", envir = environment())
 
 #make ages whatever top indicator is for each cause
 picktop <- function(df){
