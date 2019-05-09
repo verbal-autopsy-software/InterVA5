@@ -22,7 +22,7 @@ probbaseV5[,18:ncol(probbaseV5)][probbaseV5[,18:ncol(probbaseV5)] == "N"  ] <- 0
 probbaseV5[,18:ncol(probbaseV5)][probbaseV5[,18:ncol(probbaseV5)] == ""   ] <- 0
 
 probs <- as.data.frame(probbaseV5[1:nrow(probbaseV5),18:ncol(probbaseV5)])
-probs <- probs %>% apply(2, as.numeric)
+probs <- apply(probs, 2, as.numeric)
 
 # make row names symptoms
 rownames(probs) <- c("Prior", probbaseV5[2:nrow(probbaseV5),1])
@@ -53,7 +53,7 @@ probs[17:19,] <- fertile
 # Actual setting up condition for y/n
 #dummydata <- apply(probs,2, function(x) { ifelse(x > x["Prior"]*10 | x >= 0.8, "y", "n")}) %>% t  %>% as.data.frame
 
-dummydata <- apply(probs,2, function(x) { ifelse(x >= likelihood, "y", ".")}) %>% t %>% as.data.frame
+dummydata <- as.data.frame( t( apply(probs,2, function(x) { ifelse(x >= likelihood, "y", ".")}) ), stringsAsFactor=F)
 
 dummydata$Prior <- NULL
 
