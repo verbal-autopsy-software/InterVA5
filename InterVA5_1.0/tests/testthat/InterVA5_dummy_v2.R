@@ -1,6 +1,7 @@
 library(InterVA5)
 
-data(probbaseV5)
+data("probbaseV5", envir = environment())
+probbaseV5 <- get("probbaseV5", envir = environment())
 
 probbaseV5[,18:ncol(probbaseV5)][probbaseV5[,18:ncol(probbaseV5)] == "I"  ] <- 1
 probbaseV5[,18:ncol(probbaseV5)][probbaseV5[,18:ncol(probbaseV5)] == "A+" ] <- 0.8
@@ -104,7 +105,7 @@ dummydata["b_0999", c("i120b","i022l")] <- "."
 
 rm(list=setdiff(ls(), "dummydata"))
 
-save(dummydata,file="InterVA5_dummy_v2.RData")
+# save(dummydata,file="InterVA5_dummy_v2.RData")
 # evaldummy <- function(data){
 #   res <- InterVA5(data, HIV = "l", Malaria = "l", directory = getwd(), filename="TestVA")
 #   causematch <- c()
