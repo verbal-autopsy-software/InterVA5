@@ -4,13 +4,16 @@
 \alias{InterVA5}
 \title{Provide InterVA5 analysis on the data input.}
 \usage{
-InterVA5(Input, HIV, Malaria, write = TRUE, directory = NULL,
-  filename = "VA5_result", output = "classic", append = FALSE,
-  groupcode = FALSE, ...)
+InterVA5(Input, sci = NULL, HIV, Malaria, write = TRUE,
+  directory = NULL, filename = "VA5_result", output = "classic",
+  append = FALSE, groupcode = FALSE, ...)
 }
 \arguments{
 \item{Input}{A matrix input, or data read from csv files in the same format
 as required by InterVA5. Sample input is included as data(RandomVA5).}
+
+\item{sci}{A data frame that contains the symptom-cause-information (aka
+Probbase) that InterVA uses to assign a cause of death.}
 
 \item{HIV}{An indicator of the level of prevalence of HIV. The input should
 be one of the following: "h"(high),"l"(low), or "v"(very low).}

@@ -16,6 +16,8 @@
 #'
 #' @param Input A matrix input, or data read from csv files in the same format
 #' as required by InterVA5. Sample input is included as data(RandomVA5).
+#' @param sci A data frame that contains the symptom-cause-information (aka
+#' Probbase) that InterVA uses to assign a cause of death.
 #' @param HIV An indicator of the level of prevalence of HIV. The input should
 #' be one of the following: "h"(high),"l"(low), or "v"(very low).
 #' @param Malaria An indicator of the level of prevalence of Malaria. The input
@@ -74,7 +76,7 @@
 #'}
 #' 
 #'
-InterVA5 <- function (Input, HIV, Malaria, write = TRUE, directory = NULL, filename = "VA5_result", 
+InterVA5 <- function (Input, sci=NULL, HIV, Malaria, write = TRUE, directory = NULL, filename = "VA5_result", 
                       output = "classic", append = FALSE, groupcode = FALSE,
                       ...) 
 {
@@ -119,9 +121,25 @@ InterVA5 <- function (Input, HIV, Malaria, write = TRUE, directory = NULL, filen
     dir.create(directory, showWarnings = FALSE)
     globle.dir <- getwd()
     setwd(directory)
-    data("probbaseV5", envir = environment())
-    probbaseV5 <- get("probbaseV5", envir = environment())
-    probbaseV5 <- as.matrix(probbaseV5)
+
+    if (is.null(sci)) {
+        data("probbaseV5", envir = environment())
+        probbaseV5 <- get("probbaseV5", envir = environment())
+        probbaseV5 <- as.matrix(probbaseV5)
+        probbaseV5Version <- probbaseV5[1,3]
+    }
+    if (!is.null(sci)) {
+        validSCI <- TRUE
+        if (!is.data.frame(sci)) validSCI <- FALSE
+        if (nrow(sci) != 354) validSCI <- FALSE
+        if (ncol(sci) != 87) validSCI <- FALSE
+        if (!validSCI) {
+            stop("error: invalid sci (must be data frame with 354 rows and 87 columns).")
+        }
+        probbaseV5 <- as.matrix(sci)
+        probbaseV5Version <- probbaseV5[1,3]
+    }
+    message("Using Probbase version:  ", probbaseV5Version)
     data("causetextV5", envir = environment())
     causetextV5 <- get("causetextV5", envir = environment())
     if (groupcode) {
@@ -134,8 +152,6 @@ InterVA5 <- function (Input, HIV, Malaria, write = TRUE, directory = NULL, filen
         cat(paste("Error & warning log built for InterVA5", Sys.time(), "\n"),
             file = "errorlogV5.txt", append = FALSE)
     }
-
-
   if( "i183o" %in% colnames(Input)){
     colnames(Input)[which(colnames(Input) == "i183o")] <- "i183a"
     message("Due to the inconsistent names in the early version of InterVA5, the indicator 'i183o' has been renamed as 'i183a'.")

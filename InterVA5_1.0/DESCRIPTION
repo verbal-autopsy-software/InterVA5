@@ -1,14 +1,15 @@
 Package: InterVA5
 Type: Package
 Title: Replicate and Analyse 'InterVA5'
-Version: 1.0.3
-Date: 2018-11-20
+Version: 1.0.4
+Date: 2019-05-10
 Author: Jason Thomas, Zehang Richard Li, Tyler McCormick, Sam Clark, Peter Byass
 Maintainer: Jason Thomas <jarathomas@gmail.com>
+Depends: readxl, curl
 Description: Provides an R version of the 'InterVA5' software (<http://www.interva.net>) for coding cause of death from verbal autopsies. It also provides simple graphical representation of individual and population level statistics.
 License: GPL-3
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: 
     testthat
