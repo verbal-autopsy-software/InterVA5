@@ -4,6 +4,7 @@ Title: Replicate and Analyse 'InterVA5'
 Version: 1.0.4
 Date: 2019-05-24
 Authors@R: c(
+  person("Matthew", "Boyas", role = "aut"),
   person("Peter", "Byass", role = "aut"),
   person("Sam", "Clark", role = "aut"),
   person("Zehang", "Li", role = "aut"),
