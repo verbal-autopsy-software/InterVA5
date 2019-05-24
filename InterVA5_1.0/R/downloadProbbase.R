@@ -7,18 +7,18 @@
 #' @author Jason Thomas, Zehang LI, Tyler McCormick, Sam Clark
 #' @keywords interVA
 #' @seealso \code{\link{probbaseV5}}
-#' @export update.SCI
+#' @export download.SCI
 #' @examples
 #'
 #' \dontrun{
 #' data(RandomVA5)
 #' RandomVA5 <- RandomVA5[1:2, ]
-#' newProbbase <- update.SCI()
+#' newProbbase <- download.SCI()
 #' out <- InterVA5(RandomVA5, sci = newProbbase, HIV = "h", Malaria = "l", write=FALSE, 
 #'     directory = tempdir(), filename = "VA5_result", output = "extended", append = FALSE)
 #' }
 #'
-update.SCI <- function(){
+download.SCI <- function(){
 
     zipFile = tempfile(fileext = ".zip")
     curl::curl_download("http://www.byass.uk/interva/InterVA_5_v5.0_release.zip", zipFile)
@@ -26,6 +26,7 @@ update.SCI <- function(){
     xlsName <- paste(tempdir(), "probbase.xls", sep = "/")
     newProbbase <- readxl::read_xls(xlsName)
     newProbbase <- newProbbase[-1, ]
+    newProbbase[is.na(newProbbase)] <- ""
 
     return(newProbbase)
 }
