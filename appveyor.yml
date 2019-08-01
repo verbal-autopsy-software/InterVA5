@@ -22,9 +22,6 @@ environment:
 
 # Adapt as necessary starting from here
 
-  R_BUILD_ARGS: "InterVA5_1.0"
-  R_CHECK_ARGS: "InterVA5_1.0"
-
   matrix:
     - R_VERSION: devel
       GCC_PATH: mingw_32
@@ -35,12 +32,14 @@ environment:
       R_ARCH: x64
     - R_VERSION: stable
 
+before_build:
+  - cd InterVA5_1.0
+
 build_script:
-  - travis-tool.sh install_deps
-  - 
+  - ../travis-tool.sh install_deps
 
 test_script:
-  - travis-tool.sh run_tests
+  - ../travis-tool.sh run_tests
 
 on_failure:
   - 7z a failure.zip *.Rcheck\*
