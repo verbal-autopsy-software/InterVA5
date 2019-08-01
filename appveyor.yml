@@ -21,9 +21,9 @@ environment:
   # R_REMOTES_STANDALONE: true
 
 # Adapt as necessary starting from here
-  DOWNLOAD_FILE_METHOD: wininet
 
-  R_BUILD_ARGS: InterVA5_1.0
+  R_BUILD_ARGS="InterVA5_1.0"
+  R_CHECK_ARGS="InterVA5_1.0"
 
   matrix:
     - R_VERSION: devel
@@ -37,6 +37,7 @@ environment:
 
 build_script:
   - travis-tool.sh install_deps
+  - 
 
 test_script:
   - travis-tool.sh run_tests
