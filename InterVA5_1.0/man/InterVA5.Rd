@@ -103,6 +103,6 @@ http://www.interva.net/
 \code{\link{InterVA5.plot}}
 }
 \author{
-Jason Thomas Zehang Li, Tyler McCormick, Sam Clark
+Jason Thomas, Zehang Li, Tyler McCormick, Sam Clark
 }
 \keyword{InterVA}

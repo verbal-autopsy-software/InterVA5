@@ -10,8 +10,9 @@ download.SCI()
 \item{newProbbase}{The Symptom-Cause-Information ("Probbase") used to assign causes of death.}
 }
 \description{
-The function takes input of a list of va object and calculates the
-cause-specific mortality fraction. It only calculates CSMF5 as aggregation of up to the third largest causes.
+The function downloads the most recent version of InterVA5, extracts
+the probbase.xls file (i.e., the Symptom-Cause-Information [SCI] source ), 
+and returns SCI as a matrix.
 }
 \examples{
 

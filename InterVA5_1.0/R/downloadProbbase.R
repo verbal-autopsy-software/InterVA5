@@ -1,7 +1,8 @@
 #' Update the Symptom-Cause-Information source (aka probbaseV5).
 #'
-#' The function takes input of a list of va object and calculates the
-#' cause-specific mortality fraction. It only calculates CSMF5 as aggregation of up to the third largest causes.
+#' The function downloads the most recent version of InterVA5, extracts
+#' the probbase.xls file (i.e., the Symptom-Cause-Information [SCI] source ), 
+#' and returns SCI as a matrix.
 #'
 #' @return \item{newProbbase}{The Symptom-Cause-Information ("Probbase") used to assign causes of death.}
 #' @author Jason Thomas, Zehang LI, Tyler McCormick, Sam Clark
@@ -27,6 +28,31 @@ download.SCI <- function(){
     newProbbase <- readxl::read_xls(xlsName)
     newProbbase <- newProbbase[-1, ]
     newProbbase[is.na(newProbbase)] <- ""
+    newProbbase <- as.matrix(newProbbase)
+    message("Downloaded Probbase version:  ", newProbbase[1,3])
 
     return(newProbbase)
+}
+
+#' Print the version of the Symptom-Cause-Information source (aka probbaseV5).
+#'
+#' The function takes 
+#'
+#' @param sci a symptom-cause-information matrix 
+#' @return \item{}{Message stating the Probbase version.}
+#' @author Jason Thomas, Zehang LI, Tyler McCormick, Sam Clark
+#' @keywords interVA
+#' @seealso \code{\link{download.SCI}}
+#' @export version.SCI
+#' @examples
+#'
+#' \dontrun{
+#' data(probbaseV5)
+#' version.SCI(sci = probbaseV5)
+#' }
+#'
+version.SCI <- function(sci){
+
+    message("Probbase version:  ", sci[1,3])
+
 }

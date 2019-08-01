@@ -50,7 +50,7 @@
 #' \item{COMCAT }{ most likely circumstance of mortality}
 #' \item{COMNUM }{ likelihood of COMCAT}
 #' \item{wholeprob }{ full distribution of causes of death}
-#' @author Jason Thomas Zehang Li, Tyler McCormick, Sam Clark
+#' @author Jason Thomas, Zehang Li, Tyler McCormick, Sam Clark
 #' @seealso \code{\link{InterVA5.plot}}
 #' @references http://www.interva.net/
 #' @keywords InterVA
@@ -130,11 +130,11 @@ InterVA5 <- function (Input, sci=NULL, HIV, Malaria, write = TRUE, directory = N
     }
     if (!is.null(sci)) {
         validSCI <- TRUE
-        if (!is.data.frame(sci)) validSCI <- FALSE
+        if (!is.data.frame(sci) & !is.matrix(sci)) validSCI <- FALSE
         if (nrow(sci) != 354) validSCI <- FALSE
         if (ncol(sci) != 87) validSCI <- FALSE
         if (!validSCI) {
-            stop("error: invalid sci (must be data frame with 354 rows and 87 columns).")
+            stop("error: invalid sci (must be data frame or matrix with 354 rows and 87 columns).")
         }
         probbaseV5 <- as.matrix(sci)
         probbaseV5Version <- probbaseV5[1,3]
