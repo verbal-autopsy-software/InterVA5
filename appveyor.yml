@@ -22,8 +22,8 @@ environment:
 
 # Adapt as necessary starting from here
 
-  R_BUILD_ARGS="InterVA5_1.0"
-  R_CHECK_ARGS="InterVA5_1.0"
+  R_BUILD_ARGS: "InterVA5_1.0"
+  R_CHECK_ARGS: "InterVA5_1.0"
 
   matrix:
     - R_VERSION: devel
