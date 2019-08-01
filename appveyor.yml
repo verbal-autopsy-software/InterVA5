@@ -33,13 +33,17 @@ environment:
     - R_VERSION: stable
 
 before_build:
-  - cd InterVA5_1.0
+   ps: |
+        cp ..\travis-tool.sh InterVA5_1.0\travis-tool.sh
+        cp travis-tool.sh.cmd InterVA5_1.0\travis-tools.sh.cmd
+        cd InterVA5_1.0
+        bash -c "echo '^travis-tool\.sh\.cmd$' >> .Rbuildignore"
 
 build_script:
-  - C:\projects\interva5\travis-tool.sh install_deps
+  - travis-tool.sh install_deps
 
 test_script:
-  - C:\projects\interva5\travis-tool.sh run_tests
+  - travis-tool.sh run_tests
 
 on_failure:
   - 7z a failure.zip *.Rcheck\*
