@@ -4,16 +4,13 @@
 \alias{InterVA5}
 \title{Provide InterVA5 analysis on the data input.}
 \usage{
-InterVA5(Input, sci = NULL, HIV, Malaria, write = TRUE,
-  directory = NULL, filename = "VA5_result", output = "classic",
-  append = FALSE, groupcode = FALSE, ...)
+InterVA5(Input, HIV, Malaria, write = TRUE, directory = NULL,
+  filename = "VA5_result", output = "classic", append = FALSE,
+  groupcode = FALSE, sci = NULL, returnCheckedData = FALSE, ...)
 }
 \arguments{
 \item{Input}{A matrix input, or data read from csv files in the same format
 as required by InterVA5. Sample input is included as data(RandomVA5).}
-
-\item{sci}{A data frame that contains the symptom-cause-information (aka
-Probbase) that InterVA uses to assign a cause of death.}
 
 \item{HIV}{An indicator of the level of prevalence of HIV. The input should
 be one of the following: "h"(high),"l"(low), or "v"(very low).}
@@ -34,7 +31,7 @@ and and error message is produced.}
 needed. The output is in .csv format by default.}
 
 \item{output}{"classic": The same deliminated output format as InterVA5; or
-"extended": deliminated output followed by full distribution of cause of
+"extended": delimited output followed by full distribution of cause of
 death proability.}
 
 \item{append}{A logical value indicating whether or not the new output
@@ -42,6 +39,15 @@ should be appended to the existing file.}
 
 \item{groupcode}{A logical value indicating whether or not the group code
 will be included in the output causes.}
+
+\item{sci}{A data frame that contains the symptom-cause-information (aka
+Probbase) that InterVA uses to assign a cause of death.}
+
+\item{returnCheckedData}{A logical indicating if the checked data (i.e.,
+the data that has been modified by the consistency checks) should be returned.
+For these data, a value of 1 indicates that the conditional probability
+is included in the calculation of the propensity) and a value of 0 indicates
+that it is NOT included.}
 
 \item{...}{not used}
 }
@@ -53,7 +59,7 @@ PREGSTAT} \item{PRMAT }{ likelihood of maternal death} \item{INDET
 }{ indeterminate outcome} \item{CAUSE1 }{ most likely cause} \item{LIK1 }{
 likelihood of 1st cause} \item{CAUSE2 }{ second likely cause} \item{LIK2 }{
 likelihood of 2nd cause} \item{CAUSE3 }{ third likely cause} \item{LIK3 }{
-likelihood of 3rd cause} \item{wholeprob}{ full distribution of causes of death}
+likelihood of 3rd cause}
 \item{COMCAT }{ most likely circumstance of mortality}
 \item{COMNUM }{ likelihood of COMCAT}
 \item{wholeprob }{ full distribution of causes of death}
@@ -84,7 +90,7 @@ RandomVA5 <- RandomVA5[1:5, ]
 ## orders match interVA5 standard input this can be monitored by checking
 ## the warnings of column names
 
-sample.output1 <- InterVA5(RandomVA5, HIV = "h", Malaria = "l", write=FALSE, 
+sample.output1 <- InterVA5(RandomVA5, HIV = "h", Malaria = "l", write = FALSE, 
     directory = tempdir(), filename = "VA5_result", output = "extended", append = FALSE)
 
 \dontrun{
