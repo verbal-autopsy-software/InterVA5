@@ -21,19 +21,19 @@ environment:
   # R_REMOTES_STANDALONE: true
 
 # Adapt as necessary starting from here
+  DOWNLOAD_FILE_METHOD: wininet
+
+  R_BUILD_ARGS: InterVA5_1.0
+
   matrix:
     - R_VERSION: devel
       GCC_PATH: mingw_32
-      DOWNLOAD_FILE_METHOD: wininet
     - R_VERSION: devel
       R_ARCH: x64
       GCC_PATH: mingw_64
-      DOWNLOAD_FILE_METHOD: wininet
     - R_VERSION: release
       R_ARCH: x64
-      DOWNLOAD_FILE_METHOD: wininet
     - R_VERSION: stable
-      DOWNLOAD_FILE_METHOD: wininet
 
 build_script:
   - travis-tool.sh install_deps
