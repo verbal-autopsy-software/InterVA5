@@ -39,10 +39,7 @@
 #' @param sci A data frame that contains the symptom-cause-information (aka
 #' Probbase) that InterVA uses to assign a cause of death.
 #' @param returnCheckedData A logical indicating if the checked data (i.e.,
-#' the data that has been modified by the consistency checks) should be returned.
-#' For these data, a value of 1 indicates that the conditional probability
-#' is included in the calculation of the propensity) and a value of 0 indicates
-#' that it is NOT included.
+#' the data that have been modified by the consistency checks) should be returned.
 #' @param ... not used
 #' @return \item{ID }{ identifier from batch (input) file} \item{MALPREV
 #' }{ selected malaria prevalence} \item{HIVPREV }{ selected HIV prevalence}
@@ -265,6 +262,9 @@ InterVA5 <- function (Input, HIV, Malaria, write = TRUE, directory = NULL, filen
         if (i%%np == 0) {
             cat(paste(round(i/N * 100), "% completed\n", sep = ""))
         }
+        if (i == N) {
+            cat(paste("100% completed\n", sep = ""))
+        }
 
         index.current <- as.character(Input[i, 1])   
         Input[i, which(toupper(Input[i, ]) == "N")] <- "0"
@@ -293,6 +293,10 @@ InterVA5 <- function (Input, HIV, Malaria, write = TRUE, directory = NULL, filen
         }
 
         tmp <- DataCheck5(input.current, id=index.current, probbaseV5=probbaseV5, write=write)
+        if (returnCheckedData) {
+            checkedData <- rbind(checkedData,
+                                 c(idInputs[i], tmp[2:S]))
+        }
         input.current <- tmp$Output
         firstPass <- rbind(firstPass, tmp$firstPass)
         secondPass <- rbind(secondPass, tmp$secondPass)
@@ -313,10 +317,6 @@ InterVA5 <- function (Input, HIV, Malaria, write = TRUE, directory = NULL, filen
         input.current[input.current==0] <- 1
         input.current[1] <- 0
         input.current[is.na(input.current)] <- 0
-        if (returnCheckedData) {
-            checkedData <- rbind(checkedData,
-                                 c(idInputs[i], input.current[2:S]))
-        }
         reproductiveAge <- 0
         preg_state      <- " "
         lik.preg        <- " "

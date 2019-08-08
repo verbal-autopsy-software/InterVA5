@@ -44,10 +44,7 @@ will be included in the output causes.}
 Probbase) that InterVA uses to assign a cause of death.}
 
 \item{returnCheckedData}{A logical indicating if the checked data (i.e.,
-the data that has been modified by the consistency checks) should be returned.
-For these data, a value of 1 indicates that the conditional probability
-is included in the calculation of the propensity) and a value of 0 indicates
-that it is NOT included.}
+the data that have been modified by the consistency checks) should be returned.}
 
 \item{...}{not used}
 }

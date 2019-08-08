@@ -2,15 +2,15 @@
 #' 
 #' This function implements the data cleaning steps in the InterVA5 software.
 #' 
-#' @param Input original data vector for one observation coded by 0 (absense), 1 (presence), and NA (missing).
+#' @param Input original data vector for one observation coded by 0 (absence), 1 (presence), and NA (missing).
 #' @param id id for this observation
 #' @param probbaseV5 matrix of probbaseV5
 #' @param InSilico_check logical indicator for if the check uses InSilicoVA rule. InSilicoVA rule sets all symptoms that should not be asked to missing. In contrast, the default InterVA5 rule sets these symptoms to missing only when they take the substantive value. 
 #' @param write logical indicator of writing to file
 #' 
-#' @return  \item{Output }{ new data vector} \item{firstPass
-#' }{ message for the first pass check} \item{secondPass }{ message for the second pass check}
-#' @author Jason Thomas Zehang Li, Tyler McCormick, Sam Clark
+#' @return  \item{Output}{ new data vector} \item{firstPass
+#' }{ message for the first pass check} \item{secondPass}{ message for the second pass check}
+#' @author Jason Thomas, Zehang Li, Tyler McCormick, Sam Clark
 #' @seealso \code{\link{InterVA5.plot}}
 #' @references http://www.interva.net/
 #' @keywords InterVA
