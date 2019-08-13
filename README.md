@@ -11,4 +11,4 @@ If you have any questions regarding this package, or have concerns/find bugs/hav
 
 ## What's new
 - [CRAN version](https://cran.r-project.org/web/packages/InterVA5/news.html)
-- [Current developer version (1.0.x)](InterVA5_1.0/inst/NEWS.Rd)
+- [Current developer version (1.0.x)](InterVA5_1.0/NEWS.md)
