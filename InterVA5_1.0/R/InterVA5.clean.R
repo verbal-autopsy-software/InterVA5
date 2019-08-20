@@ -98,10 +98,12 @@ DataCheck5 <- function(Input, id, probbaseV5, InSilico_check=FALSE, write){
                     Ask.if.val <- NA
                     Ask.if.val[Ask.if.val.tmp=="N"] <- 0
                     Ask.if.val[Ask.if.val.tmp=="Y"] <- 1
+                    Ask.if.subst.tmp <- probbaseV5[Ask.if.row, 6]
+                    Ask.if.subst <- ifelse(Ask.if.subst.tmp == "Y", 1, 0)
                     
                     if(input.current[j]==subst.val){
 
-                        changeAskIf <- input.Ask.if!=Ask.if.val & subst.val != input.Ask.if
+                        changeAskIf <- input.Ask.if!=Ask.if.val & Ask.if.subst != input.Ask.if
                         if(is.na(changeAskIf)) changeAskIf <- TRUE
                         if(changeAskIf){
                             
