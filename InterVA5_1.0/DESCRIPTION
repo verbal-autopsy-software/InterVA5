@@ -2,7 +2,7 @@ Package: InterVA5
 Type: Package
 Title: Replicate and Analyse 'InterVA5'
 Version: 1.0.4
-Date: 2019-08-08
+Date: 2019-10-11
 Authors@R: c(
   person("Matthew", "Boyas", role = "aut"),
   person("Peter", "Byass", role = "aut"),
