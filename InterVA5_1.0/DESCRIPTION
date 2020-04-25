@@ -1,8 +1,8 @@
 Package: InterVA5
 Type: Package
 Title: Replicate and Analyse 'InterVA5'
-Version: 1.0.4
-Date: 2019-11-12
+Version: 1.1.0
+Date: 2020-04-14
 Authors@R: c(
   person("Matthew", "Boyas", role = "aut"),
   person("Peter", "Byass", role = "aut"),
@@ -11,6 +11,7 @@ Authors@R: c(
   person("Tyler", "McCormick", role = "aut"),
   person("Jason", "Thomas", email = "jarathomas@gmail.com", role = c("aut", "cre"))
   )
+Depends: R (>= 3.5.0)
 Encoding: UTF-8
 Imports:
     curl,
@@ -19,6 +20,7 @@ Description: Provides an R version of the 'InterVA5' software (<http://www.inter
 License: GPL-3
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Suggests: 
-    testthat
+    testthat,
+    ggplot2
