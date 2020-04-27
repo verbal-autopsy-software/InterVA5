@@ -335,7 +335,8 @@ CSMF5 <- function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALS
     }
     ## Make bar plot upon request
     if (type == "bar") {
-        dist.cod.min <- dist.cod[dist.cod >= min.prob ]
+        ## dist.cod.min <- dist.cod[dist.cod >= min.prob ]
+        dist.cod.min <- dist.cod[dist.cod > min.prob ]
         dist.cod.min <- sort(dist.cod.min, decreasing = FALSE)
         par(las = 2)
         par(mar = c(5,15,4,2))
