@@ -31,7 +31,7 @@ NULL
 #'
 #' To get the most up-to-date version of the package, as well as the past
 #' versions, please check the github repository at:
-#' \url{https://github.com/jarathomas/InterVA5-R-Replicate/}
+#' \url{https://github.com/verbal-autopsy-software/InterVA5}
 #'
 #' \tabular{ll}{ Package: \tab InterVA5\cr Type: \tab Package\cr Version: \tab
 #' 1.0\cr Date: \tab 2018-02-01\cr License: \tab GPL-3\cr }
@@ -41,7 +41,7 @@ NULL
 #' @author Jason Thomas, Zehang Li, Tyler McCormick, Sam Clark
 #'
 #' Maintainer: Jason Thomas <jarathomas@@gmail.com>
-#' @references http://www.interva.net/
+#' @references http://www.byass.uk/interva
 #' @keywords InterVA
 #'
 NULL

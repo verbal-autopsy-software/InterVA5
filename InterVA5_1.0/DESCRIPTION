@@ -16,7 +16,7 @@ Encoding: UTF-8
 Imports:
     curl,
     readxl
-Description: Provides an R version of the 'InterVA5' software (<http://www.interva.net>) for coding cause of death from verbal autopsies. It also provides simple graphical representation of individual and population level statistics.
+Description: Provides an R version of the 'InterVA5' software (<http://www.byass.uk/interva>) for coding cause of death from verbal autopsies. It also provides simple graphical representation of individual and population level statistics.
 License: GPL-3
 NeedsCompilation: no
 Repository: CRAN
