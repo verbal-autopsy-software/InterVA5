@@ -2,14 +2,14 @@ Package: InterVA5
 Type: Package
 Title: Replicate and Analyse 'InterVA5'
 Version: 1.1.2
-Date: 2021-04-16
+Date: 2021-07-19
 Authors@R: c(
-  person("Matthew", "Boyas", role = "aut"),
-  person("Peter", "Byass", role = "aut"),
-  person("Sam", "Clark", role = "aut"),
+  person("Jason", "Thomas", email = "jarathomas@gmail.com", role = c("aut", "cre")),
   person("Zehang", "Li", role = "aut"),
+  person("Peter", "Byass", role = "aut"),
   person("Tyler", "McCormick", role = "aut"),
-  person("Jason", "Thomas", email = "jarathomas@gmail.com", role = c("aut", "cre"))
+  person("Matthew", "Boyas", role = "aut"),
+  person("Sam", "Clark", role = "aut")
   )
 Depends: R (>= 3.5.0)
 Encoding: UTF-8

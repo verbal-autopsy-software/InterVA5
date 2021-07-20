@@ -142,6 +142,31 @@ NULL
 
 
 
+#' Version 19 of the conditional probability of InterVA5
+#'
+#' This is version 19 (July 20, 2021) of the table of conditional probabilities of symptoms given CODs, along with
+#' prior probabilities in the first row. The
+#' values differ from the last version (v18) of InterVA-5 (interva.net) by setting
+#' Pr(abortion-related death | i310 = 1) = "N"
+#' (the previous value was "E").
+#'
+#'
+#' @name probbaseV5_19
+#' @docType data
+#' @format A data frame with 354 observations on 87 variables. The first row contains
+#' observations corresponding to prior probabilities; while the subsequent observations
+#' (rows 2 - 354) are the conditional probabilities.
+#' @keywords datasets
+#' @examples
+#' 
+#' data(probbaseV5_19)
+#'
+NULL
+
+
+
+
+
 #' 200 records of Sample Input
 #'
 #' This is a dataset consisting of 200 arbitrary sample input deaths in the
