@@ -13,8 +13,9 @@ observations corresponding to prior probabilities; while the subsequent observat
 This is version 19 (July 20, 2021) of the table of conditional probabilities of symptoms given CODs, along with
 prior probabilities in the first row. The
 values differ from the last version (v18) of InterVA-5 (interva.net) by setting
+Pr(abortion-related death | i309 = 1) = "N"
 Pr(abortion-related death | i310 = 1) = "N"
-(the previous value was "E").
+(the previous values were "E").
 }
 \examples{
 
