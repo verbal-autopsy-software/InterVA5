@@ -4,7 +4,7 @@
 #' produces individual cause of death (COD) and population cause-specific mortality
 #' fractions.  The output is saved in a .csv file specified by user.
 #' The calculation is based on the conditional and prior distribution
-#' of 61 CODs. The function can also  save the full probability distibution
+#' of 61 CODs. The function can also  save the full probability distribution
 #' of each individual to file. All information about each individual is
 #' saved to a va class object.
 #'

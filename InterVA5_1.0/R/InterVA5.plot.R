@@ -337,13 +337,13 @@ CSMF5 <- function (va, top.aggregate = NULL, InterVA.rule = FALSE, noplot = FALS
         pie.color.left <- rep(pie.color[length(pie.color)], length(dist.cod.sort[dist.cod.sort < min.prob]))
         pie.color <- c(pie.color, pie.color.left)
         pie(dist.cod.sort, main = title,
-            col = pie.color, labels = names(dist.cod.sort)[dist.cod.sort > min.prob],
+            col = pie.color, labels = names(dist.cod.sort)[dist.cod.sort >= min.prob],
             ...)
     }
     ## Make bar plot upon request
     if (type == "bar") {
         ## dist.cod.min <- dist.cod[dist.cod >= min.prob ]
-        dist.cod.min <- dist.cod[dist.cod > min.prob ]
+        dist.cod.min <- dist.cod[dist.cod >= min.prob ]
         dist.cod.min <- sort(dist.cod.min, decreasing = FALSE)
         if (requireNamespace("ggplot2", quietly = TRUE)) {
             barplot.df <- data.frame(Probability = dist.cod.min,
@@ -460,7 +460,7 @@ InterVA5.plot <- function(va, type = "bar", title = "Top CSMF Distribution", min
         pie.color <- grey.colors(length(dist.cod.sort[dist.cod.sort >= min.prob]))
         pie.color.left <- rep(pie.color[length(pie.color)], length(dist.cod.sort[dist.cod.sort < min.prob]))
         pie.color <- c(pie.color, pie.color.left)
-        pie(dist.cod.sort, main = title, col = pie.color,labels = names(dist.cod.sort)[dist.cod.sort > min.prob], ...)
+        pie(dist.cod.sort, main = title, col = pie.color,labels = names(dist.cod.sort)[dist.cod.sort >= min.prob], ...)
     }
     ## Make bar plot upon request
     if (type == "bar") {
